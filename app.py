@@ -19,7 +19,7 @@ def predict():
         float(request.form['C']),
         float(request.form['LK']),
         float(request.form['WK']),
-        float(request.form['A_coef']),
+        float(request.form['A_Coef']),
         float(request.form['LKG'])
     ]
 
@@ -29,7 +29,7 @@ def predict():
     varieties = {0:'Kama',1:'Rosa',2:'Canadian'}
     result = varieties[prediction]
 
-    return jsonify({'prediciton':result})
+    return jsonify({'prediction':result})
 
 if __name__ == '__main__':
     app.run(debug=True)

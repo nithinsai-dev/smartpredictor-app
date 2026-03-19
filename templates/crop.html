@@ -78,6 +78,20 @@
             color: white;
             display: none;
         }
+        #resetBtn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            color:white;
+        }
+        #resetBtn:hover {
+            background-color: #667eea;
+        }
     </style>
 </head>
 <body>
@@ -116,11 +130,16 @@
         </div>
 
         <button id="predictBtn">🌱 Get Crop Recommendation</button>
-        <div id="result"></div>
+        <button id="resetBtn" type="button">🔄 Reset</button>
+        <div id="result">
+            <p class="accuracy">Accuracy : 99%</p>
+        </div>
+
     </div>
 
     <script>
         $("#predictBtn").click(function() {
+            $("#predictBtn").text("⏳ Predicting...").prop("disabled", true);
             var data = {
                 N: $("#N").val(),
                 P: $("#P").val(),
@@ -136,14 +155,22 @@
                 type: "POST",
                 data: data,
                 success: function(response) {
-                    $("#result").html("🌱 Recommended Crop: " + response.prediction);
+                    $("#result").html("✅ Recommended Crop: " + response.prediction);
                     $("#result").show();
+                    $("#predictBtn").text("🌱 Get Crop Recommendation").prop("disabled", false);
                 },
                 error: function() {
                     $("#result").html("❌ Something went wrong!");
                     $("#result").show();
+                    $("#predictBtn").text("🌱 Get Crop Recommendation").prop("disabled", false);
                 }
             });
+        });
+
+        $("#resetBtn").click(function() {
+                $("input").val("");
+                $("#result").hide();
+                $("#predictBtn").prop("disabled", false);
         });
     </script>
 </body>

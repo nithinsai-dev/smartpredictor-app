@@ -42,17 +42,17 @@ def predict_seeds():
 def predict_crop():
     features = [
         float(request.form['N']),
-        float(request.form['p']),
+        float(request.form['P']),
         float(request.form['K']),
         float(request.form['temperature']),
         float(request.form['humidity']),
-        float(request.form['pH']),
+        float(request.form['ph']),
         float(request.form['rainfall'])
     ]
 
     features_array = np.array([features])
     prediction = crop_model.predict(features_array)[0]
-    return jsonify({'prediction',str(prediction)})
+    return jsonify({'prediction':str(prediction)})
 
 if __name__ == '__main__':
     app.run(debug=True)

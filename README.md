@@ -1,6 +1,6 @@
-# Seed & Disease Predictor
+# Seed & Crop Predictor
 A web app that predicts wheat seed variety 
-and seed quality using Machine Learning.
+and which seeds tp plant according to the soil.
 
 ## Models Used
 - Random Forest (Seeds Dataset)
